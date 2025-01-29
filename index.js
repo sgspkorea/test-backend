@@ -18,10 +18,12 @@ const MONGO_URI = process.env.MONGO_URI;
 // ↑ Atlas에서 복사한 URI (본인 것 사용)
 // 보안상 실제론 process.env.MONGO_URI 등 환경변수 사용하는 게 좋음
 
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(MONGO_URI)
+//   옜날 코드로 삭제 
+// , {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
   .then(() => console.log('MongoDB 연결 성공!'))
   .catch((err) => console.error('MongoDB 연결 실패:', err));
 
