@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // ------------------ 1) MongoDB 연결  ------------------
-const MONGO_URI = 'mongodb+srv://sgspkorea:KGwqln2bAx5xoXAE@cluster0.nj9xr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
 // ↑ Atlas에서 복사한 URI (본인 것 사용)
 // 보안상 실제론 process.env.MONGO_URI 등 환경변수 사용하는 게 좋음
 
@@ -132,13 +132,13 @@ app.post('/submit', async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'sgsp.korea@gmail.com',
-        pass: 'qcpz sbqg hpdu mvat',
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
       },
     });
 
     const mailOptions = {
-      from: 'sgsp.korea@gmail.com',
+      from: process.env.MAIL_USER,
       to: email,
       subject: '테스트 결과',
       text: emailText,
